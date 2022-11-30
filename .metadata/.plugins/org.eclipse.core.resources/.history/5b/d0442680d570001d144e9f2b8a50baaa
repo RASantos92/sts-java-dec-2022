@@ -1,0 +1,10 @@
+package com.robert.springdemo.models;
+
+public class FrontendDeveloper extends Developer {
+	private boolean isArtistic = true;
+	public FrontendDeveloper() {
+		super("No name givin", true,75000, 6.5 );
+		
+	}
+
+}
