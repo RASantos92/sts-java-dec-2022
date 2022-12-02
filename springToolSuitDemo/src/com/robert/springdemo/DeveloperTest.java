@@ -1,6 +1,7 @@
 package com.robert.springdemo;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import com.robert.springdemo.models.Developer;
 import com.robert.springdemo.models.FrontendDeveloper;
@@ -23,6 +24,8 @@ public class DeveloperTest {
 	        System.out.println(fed.displayStats());
 	        System.out.println(Developer.getDevCount());
 	        System.out.println(Developer.getTotalSalaries());
+
+	        
 	}
 
 }
