@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,7 +9,10 @@
 </head>
 <body>
 	<h1> Review form </h1>
+	<p><c:out value="${ratingError}"/></p>
+	<p><c:out value="${movieError}"/></p>
 	<form action="/review/process" method="post">
+	<input type="hidden" name="userId" value="12">
 	<div>
 		<label> Movie </label>
 		<input type="text" name="movie"/>

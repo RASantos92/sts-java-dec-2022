@@ -9,6 +9,7 @@
 </head>
 <body>
 	<h1>review info:</h1>
+	<h3>User ID: <c:out value="${userId}"/></h3>
 	<h3>Movie: <c:out value="${movie}"/></h3>
 	<h3>Rating: <c:out value="${rating}"/></h3>
 	<h3>Comment: <c:out value="${comment}"/></h3>
