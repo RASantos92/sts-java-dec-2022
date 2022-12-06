@@ -56,6 +56,19 @@ public class Donation {
 		this.donationName = donationName;
 		this.quantity = quantity;
 	}
+	
+	
+	public Donation(Long id,
+			@NotNull @Size(min = 1, max = 20, message = "donor name needs to be more than 1 character") String donor,
+			@NotNull @Size(min = 3, max = 255, message = "donation name needs to be more than 3 character less than 255") String donationName,
+			@Min(value = 0, message = "quantity needs to be more than 0") @NotNull Integer quantity) {
+		this.id = id;
+		this.donor = donor;
+		this.donationName = donationName;
+		this.quantity = quantity;
+	}
+
+
 	// other methods
 
 
