@@ -22,7 +22,7 @@ public class DonationService {
 	}
 	
 	public List<Donation> getAll(){
-		return donationRepo.findAll();
+		return (List<Donation>) donationRepo.findAll();
 	}
 	
 	public Donation findOne(Long id) {
@@ -46,6 +46,10 @@ public class DonationService {
 	public String deleteById(Long id) {
 		donationRepo.deleteById(id);
 		return "you deleted the record with the id of: " + id;
+	}
+	
+	public List<Donation> searchDonation(String search) {
+		return donationRepo.findByDonationNameContaining(search);
 	}
 
 }

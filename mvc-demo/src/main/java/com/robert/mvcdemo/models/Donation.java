@@ -10,7 +10,9 @@ import javax.persistence.Id;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -24,11 +26,11 @@ public class Donation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 	
-    @NotNull
+    @NotEmpty
     @Size(min = 1, max = 20, message="donor name needs to be more than 1 character")
     private String donor;
     
-    @NotNull
+    @NotEmpty
     @Size(min = 3, max = 255, message="donation name needs to be more than 3 character less than 255")
     private String donationName;
     

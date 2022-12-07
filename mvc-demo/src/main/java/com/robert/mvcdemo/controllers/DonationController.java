@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.robert.mvcdemo.models.Donation;
 import com.robert.mvcdemo.services.DonationService;
@@ -28,6 +29,14 @@ public class DonationController {
 	@GetMapping("/all")
 	public String allDonations(Model model) {
 		model.addAttribute("allDonations", donationServ.getAll());
+		model.addAttribute("donation", new Donation());
+		return "showAll.jsp";
+	}
+	
+	@GetMapping("/search")
+	public String searchDonation(@RequestParam("search") String Search, Model model) {
+		model.addAttribute("allDonations", donationServ.searchDonation(Search));
+		model.addAttribute("donation", new Donation());
 		return "showAll.jsp";
 	}
 	
@@ -43,10 +52,12 @@ public class DonationController {
 		return "newDonation.jsp";
 	}
 	
-	@PostMapping("/process")
-	public String processDonation(@Valid @ModelAttribute("donation") Donation donation, BindingResult result ) {
+	@PostMapping("/all")
+	public String processDonation(@Valid @ModelAttribute("donation") Donation donation, BindingResult result, Model model ) {
+		
 		if(result.hasErrors()) {
-			return "newDonation.jsp";
+			model.addAttribute("allDonations", donationServ.getAll());
+			return "showAll.jsp";
 		}
 		donationServ.create(donation);
 		return "redirect:/donations/all";
@@ -60,7 +71,7 @@ public class DonationController {
 	}
 	
 	
-	@PutMapping("/edit/process/{id}")
+	@PutMapping("/{id}")
 	public String processEditDonation(@Valid @ModelAttribute("donation") Donation donation, BindingResult result) {
 		if(result.hasErrors()) {
 			return "donationEdit.jsp";
@@ -74,4 +85,6 @@ public class DonationController {
 		donationServ.deleteById(id);
 		return "redirect:/donations/all";
 	}
+	
+	
 }
