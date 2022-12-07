@@ -34,10 +34,13 @@ public class DonationService {
 		}
 	}
 	
-	
 	public Donation update(Long id, String donor, String donationName, Integer quantity) {
 		Donation donationToBeUpdated = new Donation(id, donor, donationName, quantity);
 		return donationRepo.save(donationToBeUpdated);
+	}
+	
+	public Donation update(Donation donation) {
+		return donationRepo.save(donation);
 	}
 	
 	public String deleteById(Long id) {

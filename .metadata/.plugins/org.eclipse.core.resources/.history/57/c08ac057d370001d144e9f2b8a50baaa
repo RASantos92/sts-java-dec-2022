@@ -1,7 +1,0 @@
-package com.robert.springdemo.models;
-
-public class Developer {
-
-	public Developer() {}
-
-}

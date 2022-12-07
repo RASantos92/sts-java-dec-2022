@@ -1,9 +1,0 @@
-package com.robert.springdemo.models;
-
-public class FrontendDeveloper {
-
-	public FrontendDeveloper() {
-		// TODO Auto-generated constructor stub
-	}
-
-}
