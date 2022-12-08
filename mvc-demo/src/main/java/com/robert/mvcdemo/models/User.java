@@ -96,6 +96,17 @@ public class User {
 		return updatedAt;
 	}
 
+	
+
+	public List<Donation> getDonations() {
+		return donations;
+	}
+
+
+	public void setDonations(List<Donation> donations) {
+		this.donations = donations;
+	}
+
 
 	@PrePersist
     protected void onCreate(){

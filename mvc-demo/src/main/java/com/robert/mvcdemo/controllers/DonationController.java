@@ -92,7 +92,7 @@ public class DonationController {
 			return "donationEdit.jsp";
 		}
 		donationServ.update(donation);
-		return "redirect:/donations/all";
+		return "redirect:/";
 	}
 	
 	@DeleteMapping("/{id}")
