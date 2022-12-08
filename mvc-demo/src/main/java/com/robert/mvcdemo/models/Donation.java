@@ -4,13 +4,15 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
-import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -26,9 +28,9 @@ public class Donation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 	
-    @NotEmpty
-    @Size(min = 1, max = 20, message="donor name needs to be more than 1 character")
-    private String donor;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="user_id")
+    private User donor;
     
     @NotEmpty
     @Size(min = 3, max = 255, message="donation name needs to be more than 3 character less than 255")
@@ -51,21 +53,17 @@ public class Donation {
 
 
 	public Donation(
-			@NotNull @Size(min = 1, max = 20, message = "donor name needs to be more than 1 character") String donor,
 			@NotNull @Size(min = 3, max = 255, message = "donation name needs to be more than 3 character less than 255") String donationName,
 			@Min(value = 0, message = "quantity needs to be more than 0") @NotNull Integer quantity) {
-		this.donor = donor;
 		this.donationName = donationName;
 		this.quantity = quantity;
 	}
 	
 	
 	public Donation(Long id,
-			@NotNull @Size(min = 1, max = 20, message = "donor name needs to be more than 1 character") String donor,
 			@NotNull @Size(min = 3, max = 255, message = "donation name needs to be more than 3 character less than 255") String donationName,
 			@Min(value = 0, message = "quantity needs to be more than 0") @NotNull Integer quantity) {
 		this.id = id;
-		this.donor = donor;
 		this.donationName = donationName;
 		this.quantity = quantity;
 	}
@@ -85,12 +83,13 @@ public class Donation {
 	}
 
 
-	public String getDonor() {
+
+	public User getDonor() {
 		return donor;
 	}
 
 
-	public void setDonor(String donor) {
+	public void setDonor(User donor) {
 		this.donor = donor;
 	}
 

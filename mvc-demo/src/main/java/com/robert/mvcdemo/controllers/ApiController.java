@@ -34,7 +34,7 @@ public class ApiController {
 	
 	@PostMapping("/donations")
 	public Donation createDonation(@RequestParam("donationName") String donationName, @RequestParam("donor") String donor,@RequestParam("quantity") Integer quantity) {
-		Donation newDonation = new Donation(donor, donationName , quantity);
+		Donation newDonation = new Donation( donationName , quantity);
 		return donationServ.create(newDonation);
 	}
 	

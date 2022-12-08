@@ -26,7 +26,7 @@
 			<c:forEach var="donation" items="${allDonations}">
 				<tr>
 					<td><c:out value="${donation.donationName}"/></td>
-					<td><c:out value="${donation.donor}"/></td>
+					<td><c:out value="${donation.donor.userName}"/></td>
 					<td>${donation.quantity}</td>
 					<td>
 					<form action="/donations/${donation.id}" method="post">

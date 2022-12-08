@@ -35,7 +35,7 @@ public class DonationService {
 	}
 	
 	public Donation update(Long id, String donor, String donationName, Integer quantity) {
-		Donation donationToBeUpdated = new Donation(id, donor, donationName, quantity);
+		Donation donationToBeUpdated = new Donation(id,donationName, quantity);
 		return donationRepo.save(donationToBeUpdated);
 	}
 	
