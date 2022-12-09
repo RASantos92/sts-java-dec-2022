@@ -1,12 +1,15 @@
 package com.robert.travlers.models;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -14,6 +17,8 @@ import javax.persistence.Transient;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+
+import org.springframework.ui.Model;
 
 @Entity
 @Table(name="users")
@@ -39,6 +44,9 @@ public class User {
     @NotEmpty(message="Confirm Password is required!")
     @Size(min=8, max=128, message="Confirm Password must be between 8 and 128 characters")
     private String confirm;
+    
+    @OneToMany(mappedBy = "traveler", fetch = FetchType.LAZY)
+    private List<Destination> destinations;
     
     @Column(updatable = false)
 	private Date createdAt;
@@ -88,7 +96,16 @@ public class User {
 	}
 	
 	
-    public Date getCreatedAt() {
+	
+    public List<Destination> getDestinations() {
+		return destinations;
+	}
+
+	public void setDestinations(List<Destination> destinations) {
+		this.destinations = destinations;
+	}
+
+	public Date getCreatedAt() {
 		return createdAt;
 	}
 

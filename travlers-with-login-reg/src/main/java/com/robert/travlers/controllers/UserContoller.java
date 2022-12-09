@@ -34,12 +34,13 @@ public class UserContoller {
 	public String registerUser(@Valid @ModelAttribute("newUser") User user, BindingResult result, HttpSession session, Model model) {
 		// check if the passwords match
 		if(!user.getPassword().equals(user.getConfirm())) {
-			result.rejectValue("password", "Match" ,"passwords not matching");
+			result.rejectValue("confirm", "Match" ,"passwords not matching");
 		}
 		// check if the email already exists
 		if(userServ.getUser(user.getEmail()) != null) {
 			result.rejectValue("email", "Unique" ,"Email already exists");
 		}
+		
 		if(result.hasErrors()) {
 			model.addAttribute("loginUser", new LoginUser());
 			return "user/loginReg.jsp";
@@ -58,6 +59,12 @@ public class UserContoller {
 		}
 		session.setAttribute("user_id", loggingInUser.getId());
 		
+		return "redirect:/";
+	}
+	
+	@GetMapping("/logout")
+	public String logout(HttpSession session) {
+		session.invalidate();
 		return "redirect:/";
 	}
 

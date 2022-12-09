@@ -35,7 +35,7 @@
 				    <div class="form-group">
 				        <label>Confirm Password</label>
 				        <form:input path="confirm" class="form-control" />
-				        <form:errors path="confirm" class="text-danger" />
+				        <form:errors path="confirm" class="text-warning" />
 				    </div>
 				    <input type="submit" value="Register User" class="btn btn-primary" />
 				</form:form>
